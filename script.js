@@ -43,7 +43,12 @@ function drop(e) {
   const existingBlocks = dropZone.innerText;
 
   if (existingBlocks.includes(text)) {
-    return; // Stop if duplicate
+    return;
+  }
+
+  const placeholder = dropZone.querySelector("p");
+  if (placeholder) {
+    dropZone.removeChild(placeholder);
   }
 
   const newBlock = document.createElement("div");
