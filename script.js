@@ -1,3 +1,4 @@
+let currentLevel = 1;
 const blocks = document.querySelectorAll(".block");
 const dropZone = document.getElementById("dropZone");
 
@@ -7,6 +8,7 @@ blocks.forEach(block => {
 
 dropZone.addEventListener("dragover", dragOver);
 dropZone.addEventListener("drop", drop);
+dropZone.addEventListener("dragstart", dragStart);
 
 function dragStart(e) {
   e.dataTransfer.setData("text", e.target.innerText);
@@ -94,4 +96,29 @@ function updateStrengthMeter() {
   const percentage = (score / required.length) * 100;
 
   document.getElementById("strengthMeter").style.width = percentage + "%";
+}
+
+function nextLevel() {
+  currentLevel++;
+
+  if (currentLevel === 2) {
+    document.querySelector("p").innerText =
+      "Fix this bad prompt: 'Write about climate change.'";
+
+    dropZone.innerHTML = "<p>Drag blocks here to improve the prompt</p>";
+
+    document.querySelector(".blocks").innerHTML = `
+      <div class="block" draggable="true">You are an environmental science professor</div>
+      <div class="block" draggable="true">Explain causes and long-term impacts</div>
+      <div class="block" draggable="true">For high school seniors</div>
+      <div class="block" draggable="true">Include real-world examples</div>
+      <div class="block" draggable="true">Limit to 300 words</div>
+    `;
+
+    document.querySelectorAll(".block").forEach(block => {
+      block.addEventListener("dragstart", dragStart);
+    });
+
+    updateStrengthMeter();
+  }
 }
