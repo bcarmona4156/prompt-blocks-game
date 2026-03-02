@@ -106,18 +106,6 @@ function updateStrengthMeter() {
   document.getElementById("strengthMeter").style.width = percentage + "%";
 }
 
-  let score = 0;
-
-  required.forEach(item => {
-    if (builtPrompt.includes(item)) {
-      score++;
-    }
-  });
-
-  const percentage = (score / required.length) * 100;
-
-  document.getElementById("strengthMeter").style.width = percentage + "%";
-}
 
 function nextLevel() {
   currentLevel++;
