@@ -54,3 +54,9 @@ function checkPrompt() {
     feedback.innerText = `⚠️ You're missing ${required.length - score} key component(s).`;
   }
 }
+
+function resetPrompt() {
+  dropZone.innerHTML = "<p>Drag blocks here to build your prompt</p>";
+  document.getElementById("feedback").innerText = "";
+  updateStrengthMeter();
+}
