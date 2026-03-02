@@ -8,7 +8,7 @@ blocks.forEach(block => {
 
 dropZone.addEventListener("dragover", dragOver);
 dropZone.addEventListener("drop", drop);
-dropZone.addEventListener("dragstart", dragStart);
+
 
 function dragStart(e) {
   e.dataTransfer.setData("text", e.target.innerText);
@@ -102,7 +102,7 @@ function nextLevel() {
   currentLevel++;
 
   if (currentLevel === 2) {
-    document.querySelector("p").innerText =
+document.getElementById("missionText").innerText =
       "Fix this bad prompt: 'Write about climate change.'";
 
     dropZone.innerHTML = "<p>Drag blocks here to improve the prompt</p>";
