@@ -29,6 +29,22 @@ body {
   border-radius: 5px;
 }
 
+.meter-container {
+  width: 300px;
+  height: 20px;
+  background: #ddd;
+  margin: 20px auto;
+  border-radius: 10px;
+}
+
+#strengthMeter {
+  height: 100%;
+  width: 0%;
+  background: #4CAF50;
+  border-radius: 10px;
+  transition: width 0.3s ease;
+}
+
 .drop-zone {
   border: 2px dashed #aaa;
 }
