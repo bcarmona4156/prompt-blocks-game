@@ -1,4 +1,22 @@
 let currentLevel = 1;
+
+const levelRequirements = {
+  1: [
+    "You are a college biology instructor",
+    "Generate 3 multiple-choice questions",
+    "For first-year undergraduates",
+    "Include answer key",
+    "Format as a table"
+  ],
+  2: [
+    "You are an environmental science professor",
+    "Explain causes and long-term impacts",
+    "For high school seniors",
+    "Include real-world examples",
+    "Limit to 300 words"
+  ]
+};
+
 const blocks = document.querySelectorAll(".block");
 const dropZone = document.getElementById("dropZone");
 
@@ -43,13 +61,7 @@ function drop(e) {
 function checkPrompt() {
   const builtPrompt = dropZone.innerText;
 
-  const required = [
-    "You are a college biology instructor",
-    "Generate 3 multiple-choice questions",
-    "For first-year undergraduates",
-    "Include answer key",
-    "Format as a table"
-  ];
+  const required = levelRequirements[currentLevel];
 
   let score = 0;
 
@@ -64,9 +76,11 @@ function checkPrompt() {
   if (score === required.length) {
     feedback.innerText = "✅ Excellent prompt structure!";
   } else {
-    feedback.innerText = `⚠️ You're missing ${required.length - score} key component(s).`;
+    feedback.innerText =
+      `⚠️ You're missing ${required.length - score} key component(s).`;
   }
 }
+
 
 function resetPrompt() {
   dropZone.innerHTML = "<p>Drag blocks here to build your prompt</p>";
@@ -77,13 +91,20 @@ function resetPrompt() {
 function updateStrengthMeter() {
   const builtPrompt = dropZone.innerText;
 
-  const required = [
-    "You are a college biology instructor",
-    "Generate 3 multiple-choice questions",
-    "For first-year undergraduates",
-    "Include answer key",
-    "Format as a table"
-  ];
+  const required = levelRequirements[currentLevel];
+
+  let score = 0;
+
+  required.forEach(item => {
+    if (builtPrompt.includes(item)) {
+      score++;
+    }
+  });
+
+  const percentage = (score / required.length) * 100;
+
+  document.getElementById("strengthMeter").style.width = percentage + "%";
+}
 
   let score = 0;
 
