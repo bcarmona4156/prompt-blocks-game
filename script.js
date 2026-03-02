@@ -71,3 +71,27 @@ function resetPrompt() {
   document.getElementById("feedback").innerText = "";
   updateStrengthMeter();
 }
+
+function updateStrengthMeter() {
+  const builtPrompt = dropZone.innerText;
+
+  const required = [
+    "You are a college biology instructor",
+    "Generate 3 multiple-choice questions",
+    "For first-year undergraduates",
+    "Include answer key",
+    "Format as a table"
+  ];
+
+  let score = 0;
+
+  required.forEach(item => {
+    if (builtPrompt.includes(item)) {
+      score++;
+    }
+  });
+
+  const percentage = (score / required.length) * 100;
+
+  document.getElementById("strengthMeter").style.width = percentage + "%";
+}
