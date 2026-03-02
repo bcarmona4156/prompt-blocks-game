@@ -20,11 +20,22 @@ function drop(e) {
   e.preventDefault();
   const text = e.dataTransfer.getData("text");
 
+  const existingBlocks = dropZone.innerText;
+
+  if (existingBlocks.includes(text)) {
+    return; // Stop if duplicate
+  }
+
   const newBlock = document.createElement("div");
   newBlock.className = "block";
   newBlock.innerText = text;
+  newBlock.draggable = true;
+
+  newBlock.addEventListener("dragstart", dragStart);
 
   dropZone.appendChild(newBlock);
+
+  updateStrengthMeter();
 }
 
 function checkPrompt() {
