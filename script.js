@@ -108,10 +108,10 @@ function updateStrengthMeter() {
 
 
 function nextLevel() {
-  currentLevel++;
+  if (currentLevel === 1) {
+    currentLevel = 2;
 
-  if (currentLevel === 2) {
-document.getElementById("missionText").innerText =
+    document.getElementById("missionText").innerText =
       "Fix this bad prompt: 'Write about climate change.'";
 
     dropZone.innerHTML = "<p>Drag blocks here to improve the prompt</p>";
@@ -131,3 +131,4 @@ document.getElementById("missionText").innerText =
     updateStrengthMeter();
   }
 }
+
